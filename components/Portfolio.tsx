@@ -116,7 +116,7 @@ export default function Portfolio() {
               animate={{ opacity: 1 }}
               className="text-2xl font-black tracking-wider"
             >
-              MISTMADE
+              VALITHAR
             </motion.h1>
 
             <nav className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
@@ -322,7 +322,7 @@ export default function Portfolio() {
               Hi, I'm{" "}
 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-violet-500">
-                Mistmade
+                Valithar
               </span>
             </motion.h1>
 
