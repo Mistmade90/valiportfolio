@@ -53,15 +53,18 @@ export default function Portfolio() {
       tags: ["Blender", "3D", "Rendering", "Sci-Fi"],
 
       images: [
-        "https://cdn.discordapp.com/attachments/517895162664452116/1503407946464231544/Vali_2.png?ex=6a033d42&is=6a01ebc2&hm=5ab3577be71d8e11d819a95adf6d1e7abe63edc74286a962288cba996d141389&",
-
-        "https://cdn.discordapp.com/attachments/517895162664452116/1503407946942517288/Vali.png?ex=6a033d42&is=6a01ebc2&hm=f2d78089b3c5421c3bd317ce9ddba53ed912cc45ec2ecbcbeee3a420daf0efb4&",
-
-        "https://cdn.discordapp.com/attachments/517895162664452116/1503407947311484928/image.png?ex=6a033d42&is=6a01ebc2&hm=a16b6e7959eea5884266f9317dbc4e0e705c91d1f2f95ae5fcada63122c7f3bc&",
-
-        "https://cdn.discordapp.com/attachments/517895162664452116/1503407947584245810/image.png?ex=6a033d42&is=6a01ebc2&hm=d2038d320e45efa9e3a47ed97eff4e143c15a35e005abc694637b2075c9dd4a5&",
-
-        "https://cdn.discordapp.com/attachments/517895162664452116/1503407947911397587/image.png?ex=6a033d42&is=6a01ebc2&hm=84801d020e8d6d0c7868067a477a1862a1faeceddfe3872dbdb11c93dfdec1c5&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345289089206/Vali_2.png?ex=6a04e91b&is=6a03979b&hm=dd6968b3b8922417c49f02d7c1316840775d6eeba4b5024f6bee591308de3e8b&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345876160646/Vali.png?ex=6a04e91b&is=6a03979b&hm=f540c86638760a393f35f0c8a7776771a93f4900ae6a059e92c2a34a056624fc&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346333204581/image.png?ex=6a04e91b&is=6a03979b&hm=7d534e4ee6c8d11cc9f9a3029eb3c7aa3a6310a1b7e0c507e4091a1977b63347&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346761154651/image.png?ex=6a04e91b&is=6a03979b&hm=62986f6cfae21854764a35acff0e915ea14ad7c3173b96d3472cffab6a4af2f7&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867347042042016/image.png?ex=6a04e91c&is=6a03979c&hm=0356e46288f28d42293f584893f5265448391e7994fa72f8c6cfbb46e871b851&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380199911474/image.png?ex=6a04ea12&is=6a039892&hm=1d75ba2c5923b65b5de76b65a039ad65208d5835d92ff2ff4cb271e0c6919898&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380682260611/image.png?ex=6a04ea12&is=6a039892&hm=843ff7d13524fc1c1acffce21df8b91850f005607152880b4ce82bf1497ec9d3&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381189898421/image.png?ex=6a04ea12&is=6a039892&hm=df766f9ed297a556fd47502052167419e6c13ab9150308a2b3b12f4dc2494455&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381689024582/image.png?ex=6a04ea12&is=6a039892&hm=13cf32e34224f687b39dc42af3741e1c1889c31c1e70c0dd0a84bfacac31b0f1&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868382175432815/image.png?ex=6a04ea12&is=6a039892&hm=cad786327dae6aa049a8f544b0cf02ba3f5e20290532f646053690b6d3c82441&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383014420643/image.png?ex=6a04ea13&is=6a039893&hm=215cb4df0c586efbc2f6533718efdf224847e11721c9baad93774df2d53504d8&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383333191690/image.png?ex=6a04ea13&is=6a039893&hm=656652bf535f060d2517e4ed4648a9fadda3c405da674289930507ddb3f30976&",
       ],
     },
   ];
