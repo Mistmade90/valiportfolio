@@ -322,7 +322,7 @@ export default function Portfolio() {
               Hi, I'm{" "}
 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-violet-500">
-                Valithar
+                Mistmade
               </span>
             </motion.h1>
 
