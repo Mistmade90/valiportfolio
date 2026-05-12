@@ -203,6 +203,7 @@ export default function LoadingScreen({
 
           <p className="text-zinc-500 text-xs tracking-[0.4em] mt-3 uppercase">
             creative engine interface
+            Made by Mistmade©
           </p>
         </div>
 
