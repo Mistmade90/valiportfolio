@@ -116,7 +116,7 @@ export default function Portfolio() {
               animate={{ opacity: 1 }}
               className="text-2xl font-black tracking-wider"
             >
-              VALITHAR
+              MISTMADE
             </motion.h1>
 
             <nav className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
