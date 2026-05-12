@@ -351,7 +351,7 @@ export default function Portfolio() {
               PLACEHOLDER
               PLACEHOLDER
               PLACEHOLDER
-              PLACEHOLDER2222
+              PLACEHOLDER
             </motion.p>
 
             {/* STATS */}
