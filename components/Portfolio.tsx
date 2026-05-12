@@ -41,9 +41,9 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "Blender Visuals",
+      title: "Vali's Blender Projects",
 
-      desc: "Cinematic 3D renders and futuristic visual experiments.",
+      desc: "Blender Projects and Experiments",
 
       longDesc:
         "A collection of my Blender creation",
@@ -348,10 +348,7 @@ export default function Portfolio() {
               transition={{ delay: 1 }}
               className="text-zinc-300 text-lg leading-9 max-w-2xl mb-12"
             >
-              PLACEHOLDER
-              PLACEHOLDER
-              PLACEHOLDER
-              PLACEHOLDER
+              I'm an 18 year old Blender modeler and Roblox Builder from Germany
             </motion.p>
 
             {/* STATS */}
@@ -402,7 +399,7 @@ export default function Portfolio() {
             </h2>
 
             <p className="text-zinc-400 text-lg">
-              Cinematic Blender Projects & Visual Experiments
+              Blender Projects and Experiments
             </p>
           </div>
 
