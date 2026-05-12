@@ -14,7 +14,11 @@ import {
   Brackets,
 } from "lucide-react";
 
-export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
+export default function LoadingScreen({
+  onFinish,
+}: {
+  onFinish: () => void;
+}) {
   const controls = useAnimation();
 
   const lines = [
@@ -63,7 +67,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
       const timeout = setTimeout(() => {
         setDisplayText((prev) => prev + lines[currentLine][charIndex]);
         setCharIndex((prev) => prev + 1);
-      }, 30);
+      }, 28);
 
       return () => clearTimeout(timeout);
     } else {
@@ -71,13 +75,13 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         setDisplayText("");
         setCharIndex(0);
         setCurrentLine((prev) => prev + 1);
-      }, 500);
+      }, 650);
 
       return () => clearTimeout(timeout);
     }
   }, [charIndex, currentLine]);
 
-  // LOADING BAR (5s)
+  // LOADING BAR
   useEffect(() => {
     const start = async () => {
       await controls.start({
@@ -88,7 +92,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         },
       });
 
-      setTimeout(onFinish, 300);
+      setTimeout(onFinish, 400);
     };
 
     start();
@@ -97,13 +101,46 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   return (
     <motion.div
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white overflow-hidden"
+      className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black overflow-hidden text-white"
     >
-      {/* BACKGROUND GLOW */}
-      <div className="absolute w-[600px] h-[600px] bg-fuchsia-500/20 blur-[180px] rounded-full"></div>
-      <div className="absolute w-[500px] h-[500px] bg-violet-500/20 blur-[160px] rounded-full"></div>
+      {/* GRID BACKGROUND */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      {/* FLOATING ICONS BACKGROUND */}
+      {/* MASSIVE GLOW */}
+      <div className="absolute w-[900px] h-[900px] bg-fuchsia-600/20 blur-[220px] rounded-full animate-pulse" />
+      <div className="absolute w-[700px] h-[700px] bg-violet-600/20 blur-[180px] rounded-full" />
+
+      {/* CENTER RING */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute w-[520px] h-[520px] rounded-full border border-fuchsia-500/10"
+      />
+
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{
+          duration: 28,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute w-[680px] h-[680px] rounded-full border border-violet-500/10"
+      />
+
+      {/* FLOATING ICONS */}
       <div className="absolute inset-0">
         {icons.map((Icon, i) => (
           <motion.div
@@ -116,54 +153,159 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
             animate={{
               y: [
                 `${positions[i].y}vh`,
-                `${positions[i].y + 3}vh`,
+                `${positions[i].y + 4}vh`,
                 `${positions[i].y}vh`,
               ],
-              rotate: [0, 10, -10, 0],
-              opacity: [0.15, 0.35, 0.15],
+              rotate: [0, 12, -12, 0],
+              scale: [1, 1.08, 1],
+              opacity: [0.15, 0.4, 0.15],
             }}
             transition={{
-              duration: 5 + i,
+              duration: 6 + i,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute text-fuchsia-400"
+            className="absolute text-fuchsia-400/80"
           >
-            <Icon size={22 + (i % 3) * 4} />
+            <Icon size={24 + (i % 3) * 6} />
           </motion.div>
         ))}
       </div>
 
-      {/* TERMINAL BOX */}
-      <div className="w-[440px] h-[190px] bg-zinc-950 border border-zinc-800 rounded-xl p-6 font-mono text-sm shadow-2xl relative z-10">
+      {/* MAIN PANEL */}
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 1,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="relative z-10"
+      >
+        {/* TOP TITLE */}
+        <div className="text-center mb-8">
+          <motion.h1
+            animate={{
+              textShadow: [
+                "0 0 10px rgba(217,70,239,0.4)",
+                "0 0 25px rgba(217,70,239,0.8)",
+                "0 0 10px rgba(217,70,239,0.4)",
+              ],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+            }}
+            className="text-5xl font-black tracking-[0.35em] uppercase bg-gradient-to-r from-fuchsia-400 via-white to-violet-400 bg-clip-text text-transparent"
+          >
+            VALITHAR
+          </motion.h1>
 
-        {/* HEADER DOTS */}
-        <div className="flex gap-2 mb-4">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <p className="text-zinc-500 text-xs tracking-[0.4em] mt-3 uppercase">
+            creative engine interface
+          </p>
         </div>
 
-        {/* TEXT */}
-        <div className="text-fuchsia-300 leading-6">
-          {displayText}
-          <span className="animate-pulse text-white">▋</span>
+        {/* TERMINAL */}
+        <div className="relative w-[520px] overflow-hidden rounded-3xl border border-fuchsia-500/20 bg-zinc-950/80 backdrop-blur-2xl shadow-[0_0_80px_rgba(217,70,239,0.15)]">
+          {/* TOP LIGHT */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-400 to-transparent opacity-60" />
+
+          {/* HEADER */}
+          <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+            </div>
+
+            <div className="flex items-center gap-2 text-zinc-500 text-xs tracking-widest uppercase">
+              <Terminal size={14} />
+              system console
+            </div>
+          </div>
+
+          {/* TERMINAL CONTENT */}
+          <div className="p-6 h-[220px] flex flex-col justify-between">
+            <div className="space-y-3 font-mono text-sm">
+              <div className="text-zinc-600">
+                $ boot --initialize valithar
+              </div>
+
+              <div className="flex items-start gap-3">
+                <span className="text-fuchsia-400">{">"}</span>
+
+                <div className="text-fuchsia-200 leading-7 tracking-wide">
+                  {displayText}
+                  <span className="animate-pulse text-white ml-1">▋</span>
+                </div>
+              </div>
+            </div>
+
+            {/* LOADING BAR */}
+            <div className="mt-10">
+              <div className="flex justify-between text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-3">
+                <span>loading</span>
+                <span>v2.6.0</span>
+              </div>
+
+              <div className="relative h-3 overflow-hidden rounded-full bg-zinc-900 border border-zinc-800">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/10 via-violet-500/10 to-fuchsia-500/10" />
+
+                <motion.div
+                  initial={{ width: "0%" }}
+                  animate={controls}
+                  className="relative h-full rounded-full bg-gradient-to-r from-fuchsia-500 via-pink-500 to-violet-500"
+                >
+                  <motion.div
+                    animate={{
+                      x: ["-100%", "250%"],
+                    }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    className="absolute inset-y-0 w-24 bg-white/30 blur-xl"
+                  />
+                </motion.div>
+              </div>
+
+              {/* STATUS */}
+              <div className="flex justify-between mt-4 text-xs">
+                <span className="text-fuchsia-400 tracking-widest uppercase">
+                  boot sequence running...
+                </span>
+
+                <motion.span
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                  }}
+                  className="text-zinc-500"
+                >
+                  ONLINE
+                </motion.span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* LOADING BAR */}
-      <div className="w-[360px] h-2 bg-zinc-800 rounded-full overflow-hidden mt-10 relative z-10">
-        <motion.div
-          initial={{ width: "0%" }}
-          animate={controls}
-          className="h-full bg-gradient-to-r from-fuchsia-500 to-violet-500 rounded-full"
-        />
-      </div>
-
-      {/* STATUS */}
-      <p className="text-zinc-500 text-xs mt-4 tracking-widest relative z-10">
-        boot sequence running...
-      </p>
+      {/* BOTTOM AMBIENT LINE */}
+      <motion.div
+        animate={{
+          opacity: [0.3, 1, 0.3],
+          scaleX: [0.9, 1, 0.9],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+        }}
+        className="absolute bottom-14 h-px w-[500px] bg-gradient-to-r from-transparent via-fuchsia-500 to-transparent"
+      />
     </motion.div>
   );
 }
