@@ -101,28 +101,29 @@ export default function Portfolio() {
       <section className="relative min-h-screen bg-black text-white overflow-hidden">
 
         {/* BACKGROUND */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#c026d320,transparent_35%),radial-gradient(circle_at_bottom_right,#7c3aed20,transparent_35%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#c026d320,transparent_35%),radial-gradient(circle_at_bottom_right,#ffffff15,transparent_35%)]"></div>
 
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:60px_60px]"></div>
 
         {/* BLURS */}
         <div className="absolute top-[-300px] left-[-200px] w-[700px] h-[700px] bg-fuchsia-500/20 blur-[180px] rounded-full"></div>
 
-        <div className="absolute bottom-[-300px] right-[-200px] w-[700px] h-[700px] bg-violet-500/20 blur-[180px] rounded-full"></div>
+        {/* SEKUNDÄR FARBE WEISS */}
+        <div className="absolute bottom-[-300px] right-[-200px] w-[700px] h-[700px] bg-white/10 blur-[180px] rounded-full"></div>
 
         {/* NAVBAR */}
-        <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/5 bg-black/20">
+        <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/30">
           <div className="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
 
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl font-black tracking-wider"
+              className="text-2xl font-black tracking-wider text-white"
             >
               VALITHAR
             </motion.h1>
 
-            <nav className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
+            <nav className="hidden md:flex items-center gap-10 text-sm text-zinc-300">
               <a
                 href="#home"
                 className="hover:text-white transition"
@@ -158,7 +159,7 @@ export default function Portfolio() {
                 delay: item.delay,
                 ease: "easeInOut",
               }}
-              className="absolute text-fuchsia-400/30"
+              className="absolute text-white/20"
               style={{ left: item.x, top: item.y }}
             >
               {item.icon}
@@ -193,7 +194,7 @@ export default function Portfolio() {
             >
 
               {/* GLOW */}
-              <div className="absolute inset-0 bg-fuchsia-500/30 blur-[140px] rounded-full"></div>
+              <div className="absolute inset-0 bg-white/20 blur-[140px] rounded-full"></div>
 
               {/* ROTATING RING */}
               <motion.div
@@ -203,7 +204,7 @@ export default function Portfolio() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute inset-[-18px] rounded-full border border-fuchsia-400/30 border-dashed"
+                className="absolute inset-[-18px] rounded-full border border-white/30 border-dashed"
               ></motion.div>
 
               {/* SECOND RING */}
@@ -214,11 +215,11 @@ export default function Portfolio() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute inset-[-35px] rounded-full border border-violet-500/20"
+                className="absolute inset-[-35px] rounded-full border border-fuchsia-400/20"
               ></motion.div>
 
               {/* IMAGE */}
-              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(217,70,239,0.35)]">
+              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.2)]">
 
                 <Image
                   src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
@@ -238,22 +239,22 @@ export default function Portfolio() {
                   duration: 4,
                   repeat: Infinity,
                 }}
-                className="absolute bottom-6 -right-6 bg-white/5 border border-white/10 px-5 py-4 rounded-3xl backdrop-blur-2xl shadow-2xl"
+                className="absolute bottom-6 -right-6 bg-white/10 border border-white/20 px-5 py-4 rounded-3xl backdrop-blur-2xl shadow-2xl"
               >
 
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <Sparkles className="text-fuchsia-400" />
+                    <Sparkles className="text-white" />
 
                     <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
                   </div>
 
                   <div>
-                    <p className="text-xs text-zinc-400 uppercase tracking-[0.2em]">
+                    <p className="text-xs text-zinc-300 uppercase tracking-[0.2em]">
                       Available
                     </p>
 
-                    <h4 className="font-semibold">
+                    <h4 className="font-semibold text-white">
                       Blender + Fullstack
                     </h4>
                   </div>
@@ -284,9 +285,9 @@ export default function Portfolio() {
                     scale: 1.15,
                     rotate: 10,
                   }}
-                  className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl flex items-center justify-center cursor-pointer hover:border-fuchsia-500/40 transition"
+                  className="w-14 h-14 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl flex items-center justify-center cursor-pointer hover:border-white/40 transition"
                 >
-                  <Icon className="text-zinc-300" />
+                  <Icon className="text-white" />
                 </motion.div>
               ))}
             </motion.div>
@@ -296,10 +297,10 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="inline-flex items-center gap-3 border border-fuchsia-400/20 bg-fuchsia-400/10 px-5 py-3 rounded-full mb-8 backdrop-blur-xl"
+              className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-5 py-3 rounded-full mb-8 backdrop-blur-xl"
             >
 
-              <div className="w-2 h-2 rounded-full bg-fuchsia-400 animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
 
               <AnimatePresence mode="wait">
                 <motion.span
@@ -308,7 +309,7 @@ export default function Portfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.4 }}
-                  className="text-fuchsia-200 text-sm tracking-[0.2em] uppercase"
+                  className="text-white text-sm tracking-[0.2em] uppercase"
                 >
                   {texts[currentText]}
                 </motion.span>
@@ -324,7 +325,7 @@ export default function Portfolio() {
             >
               Hi, I'm{" "}
 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-violet-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-fuchsia-400">
                 Valithar
               </span>
             </motion.h1>
@@ -334,12 +335,12 @@ export default function Portfolio() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 }}
-              className="inline-flex items-center gap-3 border border-white/10 bg-white/5 px-6 py-4 rounded-2xl mb-8 backdrop-blur-xl"
+              className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-6 py-4 rounded-2xl mb-8 backdrop-blur-xl"
             >
 
-              <Star className="text-fuchsia-400" />
+              <Star className="text-white" />
 
-              <span className="text-xl font-semibold">
+              <span className="text-xl font-semibold text-white">
                 Fullstack Developer
               </span>
             </motion.div>
@@ -349,7 +350,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="text-zinc-300 text-lg leading-9 max-w-2xl mb-12"
+              className="text-zinc-200 text-lg leading-9 max-w-2xl mb-12"
             >
               I'm an 18 year old Blender modeler and Roblox Builder from Germany
             </motion.p>
@@ -369,14 +370,14 @@ export default function Portfolio() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl hover:border-fuchsia-500/30 transition"
+                  className="bg-white/10 border border-white/20 rounded-3xl p-6 backdrop-blur-xl hover:border-white/40 transition"
                 >
 
-                  <h3 className="text-4xl font-black text-fuchsia-400 mb-2">
+                  <h3 className="text-4xl font-black text-white mb-2">
                     {item[0]}
                   </h3>
 
-                  <p className="text-zinc-500">
+                  <p className="text-zinc-300">
                     {item[1]}
                   </p>
                 </div>
@@ -447,7 +448,7 @@ export default function Portfolio() {
                     onClick={() => setSelected(project)}
                     className="group/button inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-violet-600 hover:scale-105 transition"
                   >
-                    View Project
+                    View Projects
 
                     <ArrowUpRight className="group-hover/button:translate-x-1 group-hover/button:-translate-y-1 transition" />
                   </button>
