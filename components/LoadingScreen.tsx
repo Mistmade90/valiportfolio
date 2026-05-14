@@ -115,9 +115,9 @@ export default function LoadingScreen({
         }}
       />
 
-      {/* MASSIVE GLOW */}
+      {/* MASSIVE GLOW (FUCHSIA + WHITE SECONDARY) */}
       <div className="absolute w-[900px] h-[900px] bg-fuchsia-600/20 blur-[220px] rounded-full animate-pulse" />
-      <div className="absolute w-[700px] h-[700px] bg-violet-600/20 blur-[180px] rounded-full" />
+      <div className="absolute w-[700px] h-[700px] bg-white/10 blur-[200px] rounded-full" />
 
       {/* CENTER RING */}
       <motion.div
@@ -137,7 +137,7 @@ export default function LoadingScreen({
           repeat: Infinity,
           ease: "linear",
         }}
-        className="absolute w-[680px] h-[680px] rounded-full border border-violet-500/10"
+        className="absolute w-[680px] h-[680px] rounded-full border border-white/10"
       />
 
       {/* FLOATING ICONS */}
@@ -158,14 +158,14 @@ export default function LoadingScreen({
               ],
               rotate: [0, 12, -12, 0],
               scale: [1, 1.08, 1],
-              opacity: [0.15, 0.4, 0.15],
+              opacity: [0.15, 0.5, 0.15],
             }}
             transition={{
               duration: 6 + i,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute text-fuchsia-400/80"
+            className="absolute text-fuchsia-400/70"
           >
             <Icon size={24 + (i % 3) * 6} />
           </motion.div>
@@ -187,29 +187,30 @@ export default function LoadingScreen({
           <motion.h1
             animate={{
               textShadow: [
-                "0 0 10px rgba(217,70,239,0.4)",
-                "0 0 25px rgba(217,70,239,0.8)",
-                "0 0 10px rgba(217,70,239,0.4)",
+                "0 0 10px rgba(255,255,255,0.2)",
+                "0 0 25px rgba(217,70,239,0.6)",
+                "0 0 10px rgba(255,255,255,0.2)",
               ],
             }}
             transition={{
               duration: 2.5,
               repeat: Infinity,
             }}
-            className="text-5xl font-black tracking-[0.35em] uppercase bg-gradient-to-r from-fuchsia-400 via-white to-violet-400 bg-clip-text text-transparent"
+            className="text-5xl font-black tracking-[0.35em] uppercase bg-gradient-to-r from-white via-fuchsia-200 to-violet-400 bg-clip-text text-transparent"
           >
             VALITHAR
           </motion.h1>
 
-          <p className="text-zinc-500 text-xs tracking-[0.4em] mt-3 uppercase">
+          <p className="text-zinc-400 text-xs tracking-[0.4em] mt-3 uppercase">
             creative engine interface
           </p>
         </div>
 
         {/* TERMINAL */}
-        <div className="relative w-[520px] overflow-hidden rounded-3xl border border-fuchsia-500/20 bg-zinc-950/80 backdrop-blur-2xl shadow-[0_0_80px_rgba(217,70,239,0.15)]">
-          {/* TOP LIGHT */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-400 to-transparent opacity-60" />
+        <div className="relative w-[520px] overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-2xl shadow-[0_0_80px_rgba(255,255,255,0.08)]">
+
+          {/* TOP LIGHT (WHITE + FUCHSIA MIX) */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-40" />
 
           {/* HEADER */}
           <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
@@ -219,7 +220,7 @@ export default function LoadingScreen({
               <div className="w-3 h-3 rounded-full bg-green-500" />
             </div>
 
-            <div className="flex items-center gap-2 text-zinc-500 text-xs tracking-widest uppercase">
+            <div className="flex items-center gap-2 text-zinc-400 text-xs tracking-widest uppercase">
               <Terminal size={14} />
               system console
             </div>
@@ -228,14 +229,14 @@ export default function LoadingScreen({
           {/* TERMINAL CONTENT */}
           <div className="p-6 h-[220px] flex flex-col justify-between">
             <div className="space-y-3 font-mono text-sm">
-              <div className="text-zinc-600">
+              <div className="text-zinc-500">
                 $ boot --initialize valithar
               </div>
 
               <div className="flex items-start gap-3">
                 <span className="text-fuchsia-400">{">"}</span>
 
-                <div className="text-fuchsia-200 leading-7 tracking-wide">
+                <div className="text-white leading-7 tracking-wide">
                   {displayText}
                   <span className="animate-pulse text-white ml-1">▋</span>
                 </div>
@@ -246,17 +247,18 @@ export default function LoadingScreen({
             <div className="mt-10">
               <div className="flex justify-between text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-3">
                 <span>loading</span>
-                <span>v2.6.0</span>
+                <span className="text-white">v2.6.0</span>
               </div>
 
-              <div className="relative h-3 overflow-hidden rounded-full bg-zinc-900 border border-zinc-800">
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/10 via-violet-500/10 to-fuchsia-500/10" />
+              <div className="relative h-3 overflow-hidden rounded-full bg-zinc-900 border border-white/10">
+
+                {/* Background Glow (WHITE SECONDARY LAYER) */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-fuchsia-500/10 to-white/5" />
 
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={controls}
-                  className="relative h-full rounded-full bg-gradient-to-r from-fuchsia-500 via-pink-500 to-violet-500"
+                  className="relative h-full rounded-full bg-gradient-to-r from-white via-fuchsia-500 to-violet-500"
                 >
                   <motion.div
                     animate={{
@@ -267,14 +269,14 @@ export default function LoadingScreen({
                       repeat: Infinity,
                       ease: "linear",
                     }}
-                    className="absolute inset-y-0 w-24 bg-white/30 blur-xl"
+                    className="absolute inset-y-0 w-24 bg-white/40 blur-xl"
                   />
                 </motion.div>
               </div>
 
               {/* STATUS */}
               <div className="flex justify-between mt-4 text-xs">
-                <span className="text-fuchsia-400 tracking-widest uppercase">
+                <span className="text-white tracking-widest uppercase">
                   boot sequence running...
                 </span>
 
@@ -284,7 +286,7 @@ export default function LoadingScreen({
                     duration: 1.5,
                     repeat: Infinity,
                   }}
-                  className="text-zinc-500"
+                  className="text-zinc-400"
                 >
                   ONLINE
                 </motion.span>
@@ -294,17 +296,17 @@ export default function LoadingScreen({
         </div>
       </motion.div>
 
-      {/* BOTTOM AMBIENT LINE */}
+      {/* BOTTOM AMBIENT LINE (WHITE + FUCHSIA MIX) */}
       <motion.div
         animate={{
-          opacity: [0.3, 1, 0.3],
+          opacity: [0.2, 1, 0.2],
           scaleX: [0.9, 1, 0.9],
         }}
         transition={{
           duration: 3,
           repeat: Infinity,
         }}
-        className="absolute bottom-14 h-px w-[500px] bg-gradient-to-r from-transparent via-fuchsia-500 to-transparent"
+        className="absolute bottom-14 h-px w-[500px] bg-gradient-to-r from-transparent via-white to-transparent"
       />
     </motion.div>
   );
