@@ -75,7 +75,7 @@ export default function Portfolio() {
       ],
     },
   ];
-  
+
   const goToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({
       behavior: "smooth",
@@ -84,7 +84,7 @@ export default function Portfolio() {
   };
 
   const nextImage = () => {
-    if (activeImage === null) return;
+    if (activeImage === null || !selected) return;
 
     setActiveImage((prev) =>
       prev === selected.images.length - 1 ? 0 : prev! + 1
@@ -92,7 +92,7 @@ export default function Portfolio() {
   };
 
   const prevImage = () => {
-    if (activeImage === null) return;
+    if (activeImage === null || !selected) return;
 
     setActiveImage((prev) =>
       prev === 0 ? selected.images.length - 1 : prev! - 1
@@ -210,17 +210,17 @@ export default function Portfolio() {
             {/* STATS */}
             <div className="grid grid-cols-3 gap-5">
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
                 <h3 className="text-4xl font-black">1+</h3>
                 <p className="text-zinc-400 text-sm mt-2">Years</p>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
                 <h3 className="text-4xl font-black">30+</h3>
                 <p className="text-zinc-400 text-sm mt-2">Projects</p>
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
                 <h3 className="text-4xl font-black">100%</h3>
                 <p className="text-zinc-400 text-sm mt-2">Satisfaction</p>
               </div>
@@ -233,33 +233,168 @@ export default function Portfolio() {
         {/* PROJECTS */}
         <section
           id="projects"
-          className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-32"
+          className="relative z-20 max-w-6xl mx-auto px-6 md:px-10 py-32"
         >
 
-          <div className="p-10 rounded-3xl border border-white/10 bg-white/5">
+          <div className="relative overflow-hidden p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
 
-            <div className="flex items-center gap-4 mb-5">
-              <Cpu size={28} />
-
-              <h3 className="text-4xl font-black">
-                Vali's Blender Projects
-              </h3>
+            {/* FIXED ACCENTS */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[-100px] left-[-100px] w-[250px] h-[250px] bg-white/10 blur-[100px] rounded-full" />
+              <div className="absolute bottom-[-120px] right-[-120px] w-[320px] h-[320px] bg-white/5 blur-[120px] rounded-full" />
             </div>
 
-            <p className="text-zinc-300 mb-8">
-              Blender Projects and Experiments
-            </p>
+            <div className="relative z-10">
 
-            <button
-              onClick={() => setSelected(projects[0])}
-              className="px-6 py-4 bg-white/10 rounded-2xl hover:bg-white/20 transition flex items-center gap-2"
-            >
-              View Projects
-              <ArrowUpRight size={18} />
-            </button>
+              <div className="flex items-center gap-4 mb-5">
+                <Cpu size={28} />
+
+                <h3 className="text-4xl font-black">
+                  Vali's Blender Projects
+                </h3>
+              </div>
+
+              <p className="text-zinc-300 mb-8">
+                Blender Projects and Experiments
+              </p>
+
+              <button
+                onClick={() => setSelected(projects[0])}
+                className="px-6 py-4 bg-white/10 rounded-2xl hover:bg-white/20 transition flex items-center gap-2 relative z-30"
+              >
+                View Projects
+                <ArrowUpRight size={18} />
+              </button>
+
+            </div>
 
           </div>
         </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="relative z-20 max-w-6xl mx-auto px-6 md:px-10 pb-32"
+        >
+
+          <div className="relative overflow-hidden p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
+
+            {/* FIXED ACCENTS */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[-100px] left-[-100px] w-[250px] h-[250px] bg-white/10 blur-[100px] rounded-full" />
+              <div className="absolute bottom-[-120px] right-[-120px] w-[320px] h-[320px] bg-white/5 blur-[120px] rounded-full" />
+            </div>
+
+            <div className="relative z-10">
+
+              <div className="flex items-center gap-4 mb-5">
+                <Star size={28} />
+
+                <h3 className="text-4xl font-black">
+                  Contact Me
+                </h3>
+              </div>
+
+              <p className="text-zinc-300 mb-10">
+                Feel free to contact me for projects, collaborations or commissions.
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-5">
+
+                {/* EMAIL */}
+                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-7 h-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.75 7.5v9a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 16.5v-9m19.5 0A2.25 2.25 0 0019.5 5.25h-15A2.25 2.25 0 002.25 7.5m19.5 0v.243a2.25 2.25 0 01-.97 1.858l-7.5 5a2.25 2.25 0 01-2.56 0l-7.5-5A2.25 2.25 0 012.25 7.743V7.5"
+                      />
+                    </svg>
+
+                  </div>
+
+                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
+                    Email
+                  </p>
+
+                  <a
+                    href="mailto:roughxvi@gmail.com"
+                    className="text-xl font-semibold hover:text-zinc-300 transition break-all"
+                  >
+                    roughxvi@gmail.com
+                  </a>
+
+                </div>
+
+                {/* DISCORD */}
+                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-7 h-7"
+                      viewBox="0 0 127.14 96.36"
+                      fill="currentColor"
+                    >
+                      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2A75.57,75.57,0,0,0,95.73,78c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07Z" />
+                    </svg>
+
+                  </div>
+
+                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
+                    Discord
+                  </p>
+
+                  <p className="text-xl font-semibold">
+                    rough4574
+                  </p>
+
+                </div>
+
+                {/* ROBLOX */}
+                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-7 h-7"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M5 3L3 19L19 21L21 5L5 3ZM10.5 9.5L14.5 10.5L13.5 14.5L9.5 13.5L10.5 9.5Z" />
+                    </svg>
+
+                  </div>
+
+                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
+                    Roblox
+                  </p>
+
+                  <p className="text-xl font-semibold">
+                    XVI_RoughJ
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
       </section>
 
       {/* PROJECT MODAL */}
