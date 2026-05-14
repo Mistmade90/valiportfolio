@@ -62,10 +62,20 @@ export default function Portfolio() {
         "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346761154651/image.png?ex=6a06e35b&is=6a0591db&hm=12b09f6b480350857716e1c9c63f910394586cb66b7b68a97dd97e740e5cf825&",
         "https://cdn.discordapp.com/attachments/1274696555772776468/1503867347042042016/image.png?ex=6a06e35c&is=6a0591dc&hm=ab12da07120f6a06842b3954babf40c6696af0c89f220912d235cc6aa9057e59&",
         "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380199911474/image.png?ex=6a06e452&is=6a0592d2&hm=46e38e74f3ccea885776d332b6f1810975c2486e6bdc53fade835165fb9ca692&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380682260611/image.png?ex=6a06e452&is=6a0592d2&hm=fb4ff3d1117f74aae55be08c0b9e0b5a0d1f3c700237be29d08548c2ef2fb480&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381189898421/image.png?ex=6a06e452&is=6a0592d2&hm=8d6b35f0819d9bc2d42d1b0986fa331e43ee2bacd1a35e7fb3d10c52dd395fe9&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381689024582/image.png?ex=6a06e452&is=6a0592d2&hm=48a8f27e7c611bb4d19095489326247a8d9c985d429361b4a9b6afdf1ce95379&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868382175432815/image.png?ex=6a06e452&is=6a0592d2&hm=cda46a0404547f8c06fbd944d79b7cab769185966b9fcae8cc91730ad05a04ab&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383014420643/image.png?ex=6a06e453&is=6a0592d3&hm=93dd12b039a57970ec8dc140fd02a0fb42201473b6262d2d58b4ef01980b4434&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383333191690/image.png?ex=6a06e453&is=6a0592d3&hm=cf877725e0b7130d1bf3f2c287f262e887bbc1eb4f37cbfbdba41b04a0acf4ba&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551880527843448/image.png?ex=6a0766a1&is=6a061521&hm=3245afe2920f27dbbaddc80286594b5f707de5169bc94fde91f6aa62e4751fb4&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551880871907388/image.png?ex=6a0766a1&is=6a061521&hm=3690eb267635b78296a6525a9d3495a29c5490b827513190b6a59250a41602ff&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881278750781/image.png?ex=6a0766a1&is=6a061521&hm=d3b8487a121d2c3f168b23c4c0d24c13ae34107bfe8c244cfaa5d553476c3148&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881660305658/image.png?ex=6a0766a1&is=6a061521&hm=8c508217c303e03193a3b4a74731cd0230b371a3ce7d260a1c1ff8aee99b4c35&",
       ],
     },
   ];
-
+  
   const goToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({
       behavior: "smooth",
