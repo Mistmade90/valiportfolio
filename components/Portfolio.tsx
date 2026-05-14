@@ -21,7 +21,7 @@ export default function Portfolio() {
   const [currentText, setCurrentText] = useState(0);
 
   const fullText =
-    "I'm an 18 year old Blender modeler and Roblox Builder from Germany";
+    "I'm an 18 year old Blender modeler and Roblox Builder from Germany. I specialize in Modeling all sorts of things from Weapons all the way to buildings. My journey through many Star wars projects has let me show my talent in many communities. This talent can be used to create your game too. Feel free to check out my projects and contact me if needed.";
 
   const [typedText, setTypedText] = useState("");
 
