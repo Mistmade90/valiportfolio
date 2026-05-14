@@ -5,9 +5,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import {
-  Circle,
-  Disc3,
-  Gamepad2,
   ArrowUpRight,
   Sparkles,
   Cpu,
@@ -24,47 +21,54 @@ export default function Portfolio() {
   const [selected, setSelected] = useState<any>(null);
   const [activeImage, setActiveImage] = useState<number | null>(null);
 
-  const texts = [
-    "Builder",
-    "Blender",
-  ];
-
+  const texts = ["Builder", "Blender"];
   const [currentText, setCurrentText] = useState(0);
+
+  const fullText =
+    "I'm an 18 year old Blender modeler and Roblox Builder from Germany";
+  const [typedText, setTypedText] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentText((prev) => (prev + 1) % texts.length);
     }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypedText(fullText.slice(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(interval);
+    }, 40);
     return () => clearInterval(interval);
   }, []);
 
   const projects = [
     {
       title: "Vali's Blender Projects",
-
       desc: "Blender Projects and Experiments",
-
-      longDesc:
-        "A collection of my Blender creation",
-
+      longDesc: "A collection of my Blender creation",
       icon: <Cpu size={28} />,
-
       tags: ["Blender", "3D", "Rendering", "Sci-Fi"],
-
       images: [
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345289089206/Vali_2.png?ex=6a04e91b&is=6a03979b&hm=dd6968b3b8922417c49f02d7c1316840775d6eeba4b5024f6bee591308de3e8b&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345876160646/Vali.png?ex=6a04e91b&is=6a03979b&hm=f540c86638760a393f35f0c8a7776771a93f4900ae6a059e92c2a34a056624fc&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346333204581/image.png?ex=6a04e91b&is=6a03979b&hm=7d534e4ee6c8d11cc9f9a3029eb3c7aa3a6310a1b7e0c507e4091a1977b63347&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346761154651/image.png?ex=6a04e91b&is=6a03979b&hm=62986f6cfae21854764a35acff0e915ea14ad7c3173b96d3472cffab6a4af2f7&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867347042042016/image.png?ex=6a04e91c&is=6a03979c&hm=0356e46288f28d42293f584893f5265448391e7994fa72f8c6cfbb46e871b851&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380199911474/image.png?ex=6a04ea12&is=6a039892&hm=1d75ba2c5923b65b5de76b65a039ad65208d5835d92ff2ff4cb271e0c6919898&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380682260611/image.png?ex=6a04ea12&is=6a039892&hm=843ff7d13524fc1c1acffce21df8b91850f005607152880b4ce82bf1497ec9d3&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381189898421/image.png?ex=6a04ea12&is=6a039892&hm=df766f9ed297a556fd47502052167419e6c13ab9150308a2b3b12f4dc2494455&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381689024582/image.png?ex=6a04ea12&is=6a039892&hm=13cf32e34224f687b39dc42af3741e1c1889c31c1e70c0dd0a84bfacac31b0f1&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868382175432815/image.png?ex=6a04ea12&is=6a039892&hm=cad786327dae6aa049a8f544b0cf02ba3f5e20290532f646053690b6d3c82441&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383014420643/image.png?ex=6a04ea13&is=6a039893&hm=215cb4df0c586efbc2f6533718efdf224847e11721c9baad93774df2d53504d8&",
-        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383333191690/image.png?ex=6a04ea13&is=6a039893&hm=656652bf535f060d2517e4ed4648a9fadda3c405da674289930507ddb3f30976&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345289089206/Vali_2.png?ex=6a06e35b&is=6a0591db&hm=48562ccb373987542e2dacfe23c8f8989e963acb50e3d3da5152ce217ecf0e38&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867345876160646/Vali.png?ex=6a06e35b&is=6a0591db&hm=d7b94b844fd0ed34b7bd7fc80e34d03f20b453fa3cdd327bf52e443bda61746b&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346333204581/image.png?ex=6a06e35b&is=6a0591db&hm=a8fd0e91910bb723c85eb1704f71679b40fbe3aa962f76b922a984949b3eed0d&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867346761154651/image.png?ex=6a06e35b&is=6a0591db&hm=12b09f6b480350857716e1c9c63f910394586cb66b7b68a97dd97e740e5cf825&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503867347042042016/image.png?ex=6a06e35c&is=6a0591dc&hm=ab12da07120f6a06842b3954babf40c6696af0c89f220912d235cc6aa9057e59&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380199911474/image.png?ex=6a06e452&is=6a0592d2&hm=46e38e74f3ccea885776d332b6f1810975c2486e6bdc53fade835165fb9ca692&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868380682260611/image.png?ex=6a06e452&is=6a0592d2&hm=fb4ff3d1117f74aae55be08c0b9e0b5a0d1f3c700237be29d08548c2ef2fb480&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381189898421/image.png?ex=6a06e452&is=6a0592d2&hm=8d6b35f0819d9bc2d42d1b0986fa331e43ee2bacd1a35e7fb3d10c52dd395fe9&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868381689024582/image.png?ex=6a06e452&is=6a0592d2&hm=48a8f27e7c611bb4d19095489326247a8d9c985d429361b4a9b6afdf1ce95379&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868382175432815/image.png?ex=6a06e452&is=6a0592d2&hm=cda46a0404547f8c06fbd944d79b7cab769185966b9fcae8cc91730ad05a04ab&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383014420643/image.png?ex=6a06e453&is=6a0592d3&hm=93dd12b039a57970ec8dc140fd02a0fb42201473b6262d2d58b4ef01980b4434&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1503868383333191690/image.png?ex=6a06e453&is=6a0592d3&hm=cf877725e0b7130d1bf3f2c287f262e887bbc1eb4f37cbfbdba41b04a0acf4ba&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551880527843448/image.png?ex=6a0766a1&is=6a061521&hm=3245afe2920f27dbbaddc80286594b5f707de5169bc94fde91f6aa62e4751fb4&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551880871907388/image.png?ex=6a0766a1&is=6a061521&hm=3690eb267635b78296a6525a9d3495a29c5490b827513190b6a59250a41602ff&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881278750781/image.png?ex=6a0766a1&is=6a061521&hm=d3b8487a121d2c3f168b23c4c0d24c13ae34107bfe8c244cfaa5d553476c3148&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881660305658/image.png?ex=6a0766a1&is=6a061521&hm=8c508217c303e03193a3b4a74731cd0230b371a3ce7d260a1c1ff8aee99b4c35&",
       ],
     },
   ];
@@ -80,9 +84,7 @@ export default function Portfolio() {
 
   const nextImage = () => {
     if (selected && activeImage !== null) {
-      setActiveImage(
-        (activeImage + 1) % selected.images.length
-      );
+      setActiveImage((activeImage + 1) % selected.images.length);
     }
   };
 
@@ -98,57 +100,57 @@ export default function Portfolio() {
 
   return (
     <>
-      <section className="relative min-h-screen bg-black text-white overflow-hidden">
+      {/* ✅ GLOBAL SCROLL FIX (IMPORTANT) */}
+      <style jsx global>{`
+        html,
+        body {
+          overflow-x: hidden;
+        }
+      `}</style>
 
-        {/* BACKGROUND */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#c026d320,transparent_35%),radial-gradient(circle_at_bottom_right,#ffffff15,transparent_35%)]"></div>
+      {/* MAIN WRAPPER */}
+      <section className="relative min-h-screen bg-black text-white overflow-x-hidden">
 
-        <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-
-        {/* BLURS */}
-        <div className="absolute top-[-300px] left-[-200px] w-[700px] h-[700px] bg-fuchsia-500/20 blur-[180px] rounded-full"></div>
-
-        {/* SEKUNDÄR FARBE WEISS */}
-        <div className="absolute bottom-[-300px] right-[-200px] w-[700px] h-[700px] bg-white/10 blur-[180px] rounded-full"></div>
-
-        {/* NAVBAR */}
-        <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/30">
+        {/* NAV */}
+        <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/40">
           <div className="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
 
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-2xl font-black tracking-wider text-white"
-            >
+            <h1 className="text-2xl font-black tracking-wider text-white">
               VALITHAR
-            </motion.h1>
+            </h1>
 
             <nav className="hidden md:flex items-center gap-10 text-sm text-zinc-300">
-              <a
-                href="#home"
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="hover:text-white transition"
               >
                 Home
-              </a>
+              </button>
 
-              <a
-                href="#projects"
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="hover:text-white transition"
               >
                 Projects
-              </a>
+              </button>
             </nav>
+
           </div>
         </header>
+
+        {/* BACKGROUND */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#ffffff10,transparent_40%),radial-gradient(circle_at_bottom_right,#ffffff08,transparent_40%)]" />
 
         {/* FLOATING ICONS */}
         <div className="absolute inset-0 pointer-events-none">
           {floatingIcons.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0 }}
               animate={{
-                opacity: 1,
                 y: [0, -20, 0],
                 x: [0, 10, 0],
                 rotate: [0, 5, -5, 0],
@@ -156,10 +158,10 @@ export default function Portfolio() {
               transition={{
                 duration: 8 + i,
                 repeat: Infinity,
-                delay: item.delay,
                 ease: "easeInOut",
+                delay: item.delay,
               }}
-              className="absolute text-white/20"
+              className="absolute text-white/25"
               style={{ left: item.x, top: item.y }}
             >
               {item.icon}
@@ -168,222 +170,55 @@ export default function Portfolio() {
         </div>
 
         {/* HERO */}
-        <div
-          id="home"
-          className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 min-h-screen grid md:grid-cols-2 gap-20 items-center pt-32"
-        >
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 min-h-screen grid md:grid-cols-2 gap-20 items-center pt-32">
 
-          {/* LEFT */}
+          {/* PROFILE */}
           <motion.div
-            initial={{ opacity: 0, x: -120 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            animate={{ y: [0, 18, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity }}
             className="flex justify-center"
           >
-
-            <motion.div
-              animate={{
-                y: [0, -18, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative"
-            >
-
-              {/* GLOW */}
-              <div className="absolute inset-0 bg-white/20 blur-[140px] rounded-full"></div>
-
-              {/* ROTATING RING */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 18,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-[-18px] rounded-full border border-white/30 border-dashed"
-              ></motion.div>
-
-              {/* SECOND RING */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{
-                  duration: 24,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-[-35px] rounded-full border border-fuchsia-400/20"
-              ></motion.div>
-
-              {/* IMAGE */}
-              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.2)]">
-
-                <Image
-                  src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
-                  alt="Profile"
-                  fill
-                  priority
-                  className="object-cover hover:scale-110 transition duration-700"
-                />
-              </div>
-
-              {/* STATUS CARD */}
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                }}
-                className="absolute bottom-6 -right-6 bg-white/10 border border-white/20 px-5 py-4 rounded-3xl backdrop-blur-2xl shadow-2xl"
-              >
-
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <Sparkles className="text-white" />
-
-                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
-                  </div>
-
-                  <div>
-                    <p className="text-xs text-zinc-300 uppercase tracking-[0.2em]">
-                      Available
-                    </p>
-
-                    <h4 className="font-semibold text-white">
-                      Blender + Fullstack
-                    </h4>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+            <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border border-white/20">
+              <Image
+                src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
+                alt="Profile"
+                fill
+                className="object-cover"
+              />
+            </div>
           </motion.div>
 
-          {/* RIGHT */}
-          <motion.div
-            initial={{ opacity: 0, x: 120 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-          >
+          {/* TEXT */}
+          <div>
 
-            {/* ICONS */}
-            <motion.div
-              initial={{ opacity: 0, y: -40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex gap-5 mb-10"
-            >
+            <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-5 py-3 rounded-full mb-8">
+              <motion.span
+                key={currentText}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-white text-sm tracking-[0.2em] uppercase"
+              >
+                {texts[currentText]}
+              </motion.span>
+            </div>
 
-              {[Circle, Disc3, Gamepad2].map((Icon, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{
-                    scale: 1.15,
-                    rotate: 10,
-                  }}
-                  className="w-14 h-14 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl flex items-center justify-center cursor-pointer hover:border-white/40 transition"
-                >
-                  <Icon className="text-white" />
-                </motion.div>
-              ))}
-            </motion.div>
+            <h1 className="text-6xl md:text-8xl font-black mb-8">
+              Hi, I'm <span className="text-zinc-300">Valithar</span>
+            </h1>
 
-            {/* TAG */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-5 py-3 rounded-full mb-8 backdrop-blur-xl"
-            >
-
-              <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentText}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-white text-sm tracking-[0.2em] uppercase"
-                >
-                  {texts[currentText]}
-                </motion.span>
-              </AnimatePresence>
-            </motion.div>
-
-            {/* TITLE */}
-            <motion.h1
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-6xl md:text-8xl font-black leading-none mb-8"
-            >
-              Hi, I'm{" "}
-
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-fuchsia-400">
-                Valithar
-              </span>
-            </motion.h1>
-
-            {/* ROLE */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 }}
-              className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-6 py-4 rounded-2xl mb-8 backdrop-blur-xl"
-            >
-
+            <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-6 py-4 rounded-2xl mb-8">
               <Star className="text-white" />
-
               <span className="text-xl font-semibold text-white">
                 Fullstack Developer
               </span>
-            </motion.div>
+            </div>
 
-            {/* DESCRIPTION */}
-            <motion.p
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="text-zinc-200 text-lg leading-9 max-w-2xl mb-12"
-            >
-              I'm an 18 year old Blender modeler and Roblox Builder from Germany
-            </motion.p>
+            <p className="text-zinc-200 text-lg leading-9 max-w-2xl mb-12">
+              {typedText}
+              <span className="animate-pulse">|</span>
+            </p>
 
-            {/* STATS */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="grid grid-cols-3 gap-5"
-            >
-
-              {[
-                ["50+", "Projects"],
-                ["1+", "Years"],
-                ["100%", "Satisfaction"],
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="bg-white/10 border border-white/20 rounded-3xl p-6 backdrop-blur-xl hover:border-white/40 transition"
-                >
-
-                  <h3 className="text-4xl font-black text-white mb-2">
-                    {item[0]}
-                  </h3>
-
-                  <p className="text-zinc-300">
-                    {item[1]}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
 
         {/* PROJECTS */}
@@ -391,134 +226,51 @@ export default function Portfolio() {
           id="projects"
           className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-32"
         >
+          {projects.map((project, i) => (
+            <div
+              key={i}
+              className="p-10 rounded-3xl border border-white/10 bg-white/5"
+            >
+              <div className="flex items-center gap-4 mb-5">
+                {project.icon}
+                <h3 className="text-4xl font-black">{project.title}</h3>
+              </div>
 
-          <div className="text-center mb-24">
+              <p className="text-zinc-300 mb-8">{project.desc}</p>
 
-            <p className="uppercase tracking-[0.3em] text-fuchsia-400 text-sm mb-5">
-              Portfolio
-            </p>
-
-            <h2 className="text-5xl md:text-7xl font-black mb-5">
-              Featured Work
-            </h2>
-
-            <p className="text-zinc-400 text-lg">
-              Blender Projects and Experiments
-            </p>
-          </div>
-
-          <div className="grid gap-10">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                whileHover={{
-                  scale: 1.015,
-                }}
-                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-10"
+              <button
+                onClick={() => setSelected(project)}
+                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 transition"
               >
-
-                <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/0 via-fuchsia-500/5 to-violet-500/0 opacity-0 group-hover:opacity-100 transition duration-500"></div>
-
-                <div className="relative z-10">
-
-                  <div className="flex items-center gap-4 text-fuchsia-400 mb-5">
-                    {project.icon}
-
-                    <h3 className="text-4xl font-black">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-zinc-400 text-lg leading-8 mb-8 max-w-3xl">
-                    {project.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 mb-8">
-                    {project.tags.map((tag: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => setSelected(project)}
-                    className="group/button inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-violet-600 hover:scale-105 transition"
-                  >
-                    View Projects
-
-                    <ArrowUpRight className="group-hover/button:translate-x-1 group-hover/button:-translate-y-1 transition" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                View Projects <ArrowUpRight />
+              </button>
+            </div>
+          ))}
         </section>
+
       </section>
 
       {/* MODAL */}
       <AnimatePresence>
         {selected && (
-          <motion.div
-            className="fixed inset-0 z-[999] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelected(null)}
-          >
+          <motion.div className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-6">
+            <motion.div className="bg-zinc-950/95 w-full max-w-6xl p-8 rounded-3xl">
 
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-zinc-950/95 border border-white/10 rounded-[2rem] max-w-6xl w-full p-8 relative max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition"
-              >
+              <button onClick={() => setSelected(null)}>
                 <X />
               </button>
 
-              <h2 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-violet-500 mb-5">
-                {selected.title}
-              </h2>
-
-              <p className="text-zinc-300 text-lg leading-8 mb-10">
-                {selected.longDesc}
-              </p>
-
-              {/* IMAGES */}
-              <div className="grid md:grid-cols-2 gap-5">
+              <div className="grid md:grid-cols-2 gap-5 mt-10">
                 {selected.images.map((img: string, i: number) => (
-                  <motion.img
+                  <img
                     key={i}
                     src={img}
-                    whileHover={{
-                      scale: 1.02,
-                    }}
+                    className="h-72 w-full object-cover rounded-2xl cursor-pointer"
                     onClick={() => setActiveImage(i)}
-                    className="h-72 w-full object-cover rounded-2xl border border-white/10 cursor-pointer"
                   />
                 ))}
               </div>
 
-              {/* TAGS */}
-              <div className="flex flex-wrap gap-3 mt-10">
-                {selected.tags.map((tag: string, i: number) => (
-                  <span
-                    key={i}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           </motion.div>
         )}
@@ -527,46 +279,26 @@ export default function Portfolio() {
       {/* IMAGE VIEWER */}
       <AnimatePresence>
         {activeImage !== null && selected && (
-          <motion.div
-            className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+          <motion.div className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center">
 
-            {/* CLOSE */}
-            <button
-              onClick={() => setActiveImage(null)}
-              className="absolute top-6 right-6 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center"
-            >
-              <X size={30} />
+            <button onClick={() => setActiveImage(null)} className="absolute top-6 right-6">
+              <X />
             </button>
 
-            {/* LEFT */}
-            <button
-              onClick={prevImage}
-              className="absolute left-6 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center"
-            >
+            <button onClick={prevImage} className="absolute left-6">
               <ChevronLeft />
             </button>
 
-            {/* RIGHT */}
-            <button
-              onClick={nextImage}
-              className="absolute right-6 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center"
-            >
-              <ChevronRight />
-            </button>
-
-            {/* IMAGE */}
             <motion.img
               key={activeImage}
               src={selected.images[activeImage]}
-              className="max-h-[85vh] max-w-[90vw] object-contain rounded-2xl"
-              initial={{ scale: 0.85 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.3 }}
+              className="max-h-[85vh] max-w-[90vw] object-contain"
             />
+
+            <button onClick={nextImage} className="absolute right-6">
+              <ChevronRight />
+            </button>
+
           </motion.div>
         )}
       </AnimatePresence>
