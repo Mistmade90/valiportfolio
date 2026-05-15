@@ -72,6 +72,7 @@ export default function Portfolio() {
         "https://cdn.discordapp.com/attachments/1274696555772776468/1504551880871907388/image.png?ex=6a0766a1&is=6a061521&hm=3690eb267635b78296a6525a9d3495a29c5490b827513190b6a59250a41602ff&",
         "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881278750781/image.png?ex=6a0766a1&is=6a061521&hm=d3b8487a121d2c3f168b23c4c0d24c13ae34107bfe8c244cfaa5d553476c3148&",
         "https://cdn.discordapp.com/attachments/1274696555772776468/1504551881660305658/image.png?ex=6a0766a1&is=6a061521&hm=8c508217c303e03193a3b4a74731cd0230b371a3ce7d260a1c1ff8aee99b4c35&",
+        "https://cdn.discordapp.com/attachments/1274696555772776468/1504825338440585216/image.png?ex=6a08654e&is=6a0713ce&hm=1a8c8877140c83d91aea96966f0d80fd20687e2b498035a108a94e76b66fb3b6&",
       ],
     },
   ];
