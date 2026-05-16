@@ -1,60 +1,79 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import {
   ArrowUpRight,
-  Cpu,
-  X,
-  Star,
   ChevronLeft,
   ChevronRight,
+  Cpu,
+  Globe,
+  Layers3,
+  Sparkles,
+  Star,
+  Sword,
+  Wand2,
+  X,
+  Shield,
+  Rocket,
+  Crown,
+  Images,
 } from "lucide-react";
 
 export default function Portfolio() {
   const [selected, setSelected] = useState<any>(null);
   const [activeImage, setActiveImage] = useState<number | null>(null);
 
-  const texts = ["Builder", "Blender"];
-  const [currentText, setCurrentText] = useState(0);
+  const titles = useMemo(
+    () => [
+      "Blender Modeler",
+      "Roblox Builder",
+    ],
+    []
+  );
 
-  const fullText =
-    "I'm an 18 year old Blender modeler and Roblox Builder from Germany. I specialize in Modeling all sorts of things from Weapons all the way to buildings. My journey through many Star wars projects has let me show my talent in many communities. This talent can be used to create your game too. Feel free to check out my projects and contact me if needed.";
+  const [currentTitle, setCurrentTitle] = useState(0);
+
+  const aboutText =
+    "I'm an 18 year old Blender modeler and Roblox Builder from Germany I specialize in Modeling all sorts of things from Weapons all the way to buildings. My journey through many Star wars projects has let me show my talent in many communities. This talent can be used to create your game too. Feel free to check out my projects and contact me if needed.";
 
   const [typedText, setTypedText] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentText((prev) => (prev + 1) % texts.length);
-    }, 2600);
+      setCurrentTitle((prev) => (prev + 1) % titles.length);
+    }, 2400);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [titles.length]);
 
   useEffect(() => {
     let i = 0;
 
     const interval = setInterval(() => {
-      setTypedText(fullText.slice(0, i));
+      setTypedText(aboutText.slice(0, i));
       i++;
 
-      if (i > fullText.length) {
-        clearInterval(interval);
-      }
-    }, 42);
+      if (i > aboutText.length) clearInterval(interval);
+    }, 12);
 
     return () => clearInterval(interval);
   }, []);
 
   const projects = [
     {
-      title: "Vali's Blender Projects",
-      desc: "Blender Projects and Experiments",
-      longDesc: "A collection of my Blender creations",
-      icon: <Cpu size={28} />,
-      tags: ["Blender", "3D", "Rendering", "Sci-Fi"],
+      title: "Vali's Blender Collection",
+      desc: "High quality cinematic renders and sci-fi creations.",
+      longDesc:
+        "A complete collection of cinematic Blender creations, immersive sci-fi environments, detailed weapons and Star Wars inspired artwork.",
+      tags: [
+        "Blender",
+        "Sci-Fi",
+        "Weapons",
+        "Roblox",
+      ],
       images: [
         "/images/Vali1.png",
         "/images/Vali2.png",
@@ -73,58 +92,131 @@ export default function Portfolio() {
     },
   ];
 
+  const floatingIcons = [
+    {
+      icon: <Sparkles size={16} />,
+      className: "top-[10%] left-[8%]",
+      delay: 0,
+    },
+    {
+      icon: <Sword size={16} />,
+      className: "top-[18%] right-[12%]",
+      delay: 1,
+    },
+    {
+      icon: <Rocket size={16} />,
+      className: "bottom-[15%] left-[10%]",
+      delay: 2,
+    },
+    {
+      icon: <Layers3 size={16} />,
+      className: "bottom-[18%] right-[12%]",
+      delay: 3,
+    },
+    {
+      icon: <Shield size={16} />,
+      className: "top-[48%] left-[4%]",
+      delay: 4,
+    },
+    {
+      icon: <Wand2 size={16} />,
+      className: "top-[52%] right-[4%]",
+      delay: 5,
+    },
+  ];
+
   const goToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({
       behavior: "smooth",
-      block: "start",
     });
   };
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (activeImage === null || !selected) return;
 
     setActiveImage((prev) =>
       prev === selected.images.length - 1 ? 0 : prev! + 1
     );
-  };
+  }, [activeImage, selected]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (activeImage === null || !selected) return;
 
     setActiveImage((prev) =>
       prev === 0 ? selected.images.length - 1 : prev! - 1
     );
-  };
+  }, [activeImage, selected]);
 
   return (
     <>
       <style jsx global>{`
-        html,
-        body {
-          overflow-x: hidden;
+        html {
           scroll-behavior: smooth;
+        }
+
+        body {
           background: black;
+          overflow-x: hidden;
+          color: white;
+        }
+
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+        }
+
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 999px;
         }
       `}</style>
 
-      <section className="relative min-h-screen bg-black text-white overflow-hidden">
+      <main className="relative min-h-screen bg-black text-white overflow-hidden">
 
-        {/* BACKGROUND */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-white/10 blur-[160px] rounded-full" />
-          <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-white/5 blur-[200px] rounded-full" />
-          <div className="absolute top-[40%] left-[50%] w-[300px] h-[300px] bg-white/5 blur-[120px] rounded-full" />
+        {/* BG */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+
+          <div className="absolute top-[-300px] left-[-300px] w-[700px] h-[700px] bg-white/[0.05] blur-[180px] rounded-full" />
+
+          <div className="absolute bottom-[-300px] right-[-300px] w-[700px] h-[700px] bg-white/[0.04] blur-[180px] rounded-full" />
+
+          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:70px_70px]" />
+
         </div>
 
-        {/* NAV */}
-        <header className="fixed top-0 left-0 w-full z-[100] backdrop-blur-xl border-b border-white/10 bg-black/40">
-          <div className="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+        {/* FLOATING ICONS */}
+        {floatingIcons.map((item, index) => (
+          <motion.div
+            key={index}
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              delay: item.delay,
+              ease: "easeInOut",
+            }}
+            className={`absolute ${item.className} hidden lg:flex z-10 w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md items-center justify-center text-zinc-300`}
+          >
+            {item.icon}
+          </motion.div>
+        ))}
 
-            <h1 className="text-2xl font-black tracking-wider">
+        {/* NAV */}
+        <header className="fixed top-0 left-0 w-full z-[100] border-b border-white/10 bg-black/40 backdrop-blur-xl">
+
+          <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+            <h1 className="text-xl font-black tracking-[0.25em]">
               VALITHAR
             </h1>
 
-            <nav className="flex gap-8 text-sm text-zinc-300">
+            <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
 
               <button
                 onClick={() =>
@@ -145,380 +237,541 @@ export default function Portfolio() {
                 Projects
               </button>
 
+              <button
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+                className="hover:text-white transition"
+              >
+                Contact
+              </button>
+
             </nav>
+
           </div>
+
         </header>
 
         {/* HERO */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 min-h-screen grid md:grid-cols-2 gap-20 items-center pt-32">
+        <section className="relative z-20 min-h-screen max-w-6xl mx-auto px-6 pt-24 flex items-center">
 
-          {/* PROFILE */}
-          <motion.div
-            animate={{ y: [0, 18, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity }}
-            className="flex justify-center"
-          >
-            <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border border-white/20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
 
-              <Image
-                src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
-                alt="Profile"
-                fill
-                priority
-                unoptimized
-                className="object-cover"
-              />
+            {/* IMAGE */}
+            <div className="flex justify-center lg:justify-start">
 
-            </div>
-          </motion.div>
-
-          {/* TEXT */}
-          <div>
-
-            <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-5 py-3 rounded-full mb-8">
-
-              <motion.span
-                key={currentText}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-white text-sm tracking-[0.2em] uppercase"
+              <motion.div
+                animate={{
+                  y: [0, 10, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative"
               >
-                {texts[currentText]}
-              </motion.span>
+
+                <div className="absolute inset-0 bg-white/10 blur-[80px] rounded-full scale-110" />
+
+                <div className="relative w-[260px] h-[260px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border border-white/10">
+
+                  <Image
+                    src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
+                    alt="Valithar"
+                    fill
+                    priority
+                    unoptimized
+                    className="object-cover scale-110"
+                  />
+
+                </div>
+
+                <div className="absolute bottom-4 right-0 px-4 py-3 rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl">
+
+                  <div className="flex items-center gap-3">
+
+                    <Crown size={16} />
+
+                    <div>
+                      <p className="text-[10px] text-zinc-400 uppercase tracking-[0.2em]">
+                        Status
+                      </p>
+
+                      <p className="font-bold text-sm">
+                        Available
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </motion.div>
 
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-black mb-8">
-              Hi, I'm <span className="text-zinc-300">Valithar</span>
-            </h1>
+            {/* TEXT */}
+            <div className="text-center lg:text-left">
 
-            <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 px-6 py-4 rounded-2xl mb-8">
-              <Star />
-              <span className="text-xl font-semibold">
-                Fullstack Developer
-              </span>
-            </div>
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-xl mb-6">
 
-            <p className="text-zinc-200 text-lg leading-9 max-w-2xl mb-12">
-              {typedText}
-              <span className="animate-pulse">|</span>
-            </p>
+                <Sparkles size={14} />
 
-            {/* STATS */}
-            <div className="grid grid-cols-3 gap-5">
+                <AnimatePresence mode="wait">
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
-                <h3 className="text-4xl font-black">1+</h3>
-                <p className="text-zinc-400 text-sm mt-2">Years</p>
+                  <motion.span
+                    key={currentTitle}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="uppercase tracking-[0.25em] text-xs text-zinc-200"
+                  >
+                    {titles[currentTitle]}
+                  </motion.span>
+
+                </AnimatePresence>
+
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
-                <h3 className="text-4xl font-black">30+</h3>
-                <p className="text-zinc-400 text-sm mt-2">Projects</p>
+              <h1 className="text-5xl md:text-7xl leading-none font-black mb-6">
+
+                Hi, I'm{" "}
+
+                <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-600 bg-clip-text text-transparent">
+                  Valithar
+                </span>
+
+              </h1>
+
+              {/* SMALL BOXES */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+
+                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-white/[0.05]">
+
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                    <Star size={16} />
+                  </div>
+
+                  <span className="font-semibold text-sm">
+                    Blender Specialist
+                  </span>
+
+                </div>
+
+                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-white/[0.05]">
+
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                    <Globe size={16} />
+                  </div>
+
+                  <span className="font-semibold text-sm">
+                    Roblox Builder
+                  </span>
+
+                </div>
+
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-xl">
-                <h3 className="text-4xl font-black">100%</h3>
-                <p className="text-zinc-400 text-sm mt-2">Satisfaction</p>
+              <p className="text-zinc-300 text-base leading-8 max-w-xl mb-10 mx-auto lg:mx-0">
+                {typedText}
+                <span className="animate-pulse">|</span>
+              </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-12">
+
+                <button
+                  onClick={goToProjects}
+                  className="group px-7 py-4 rounded-2xl bg-white text-black font-bold hover:scale-[1.02] transition duration-300 flex items-center gap-3"
+                >
+                  View Projects
+
+                  <ArrowUpRight
+                    size={18}
+                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition"
+                  />
+                </button>
+
+                <button
+                  onClick={() =>
+                    document.getElementById("contact")?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }
+                  className="px-7 py-4 rounded-2xl border border-white/10 bg-white/[0.05] hover:bg-white/[0.08] transition duration-300"
+                >
+                  Contact Me
+                </button>
+
+              </div>
+
+              {/* STATS */}
+              <div className="grid grid-cols-3 gap-4">
+
+                {[
+                  {
+                    value: "30+",
+                    label: "Projects",
+                  },
+                  {
+                    value: "1+",
+                    label: "Years",
+                  },
+                  {
+                    value: "100%",
+                    label: "Passion",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="rounded-3xl border border-white/10 bg-white/[0.04] p-5"
+                  >
+
+                    <h3 className="text-3xl font-black mb-1">
+                      {item.value}
+                    </h3>
+
+                    <p className="text-zinc-400 uppercase tracking-[0.2em] text-[10px]">
+                      {item.label}
+                    </p>
+
+                  </div>
+                ))}
+
               </div>
 
             </div>
 
           </div>
-        </div>
+
+        </section>
 
         {/* PROJECTS */}
         <section
           id="projects"
-          className="relative z-20 max-w-6xl mx-auto px-6 md:px-10 py-32"
+          className="relative z-20 max-w-5xl mx-auto px-6 py-24"
         >
 
-          <div className="relative overflow-hidden p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8"
+            >
 
-            {/* FIXED ACCENTS */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-[-100px] left-[-100px] w-[250px] h-[250px] bg-white/10 blur-[100px] rounded-full" />
-              <div className="absolute bottom-[-120px] right-[-120px] w-[320px] h-[320px] bg-white/5 blur-[120px] rounded-full" />
-            </div>
+              {/* IMAGE COUNT */}
+              <div className="absolute top-5 right-5 flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 bg-black/50 backdrop-blur-xl text-sm">
 
-            <div className="relative z-10">
+                <Images size={15} />
 
-              <div className="flex items-center gap-4 mb-5">
-                <Cpu size={28} />
+                <span>
+                  {project.images.length}
+                </span>
 
-                <h3 className="text-4xl font-black">
-                  Vali's Blender Projects
-                </h3>
               </div>
 
-              <p className="text-zinc-300 mb-8">
-                Blender Projects and Experiments
+              {/* TITLE */}
+              <div className="flex items-center gap-4 mb-5">
+
+                <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                  <Cpu size={24} />
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-black">
+                  {project.title}
+                </h2>
+
+              </div>
+
+              <p className="text-zinc-400 leading-8 mb-8 max-w-3xl">
+                {project.desc}
               </p>
 
+              {/* TAGS */}
+              <div className="flex flex-wrap gap-3 mb-8">
+
+                {project.tags.map((tag, tagIndex) => (
+                  <div
+                    key={tagIndex}
+                    className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-xs text-zinc-300"
+                  >
+                    {tag}
+                  </div>
+                ))}
+
+              </div>
+
               <button
-                onClick={() => setSelected(projects[0])}
-                className="px-6 py-4 bg-white/10 rounded-2xl hover:bg-white/20 transition flex items-center gap-2 relative z-30"
+                onClick={() => setSelected(project)}
+                className="group inline-flex items-center gap-3 px-7 py-4 rounded-2xl bg-white text-black font-bold hover:scale-[1.02] transition duration-300"
               >
                 View Projects
-                <ArrowUpRight size={18} />
+
+                <ArrowUpRight
+                  size={18}
+                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition"
+                />
               </button>
 
             </div>
+          ))}
 
-          </div>
         </section>
 
         {/* CONTACT */}
         <section
           id="contact"
-          className="relative z-20 max-w-6xl mx-auto px-6 md:px-10 pb-32"
+          className="relative z-20 max-w-5xl mx-auto px-6 pb-28"
         >
 
-          <div className="relative overflow-hidden p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8">
 
-            {/* FIXED ACCENTS */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-[-100px] left-[-100px] w-[250px] h-[250px] bg-white/10 blur-[100px] rounded-full" />
-              <div className="absolute bottom-[-120px] right-[-120px] w-[320px] h-[320px] bg-white/5 blur-[120px] rounded-full" />
-            </div>
+            {/* TITLE */}
+            <div className="flex items-center gap-4 mb-5">
 
-            <div className="relative z-10">
-
-              <div className="flex items-center gap-4 mb-5">
-                <Star size={28} />
-
-                <h3 className="text-4xl font-black">
-                  Contact Me
-                </h3>
+              <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                <Sparkles size={24} />
               </div>
 
-              <p className="text-zinc-300 mb-10">
-                Feel free to contact me for projects, collaborations or commissions.
-              </p>
+              <h2 className="text-3xl md:text-4xl font-black">
+                Let's Build Something
+              </h2>
 
-              <div className="grid md:grid-cols-3 gap-5">
+            </div>
 
-                {/* EMAIL */}
-                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+            <p className="text-zinc-400 text-base leading-8 max-w-3xl mb-10">
+              Feel free to contact me for commissions,
+              collaborations, sci-fi assets, environments,
+              weapon modeling or Roblox projects.
+            </p>
 
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <div className="grid md:grid-cols-3 gap-5">
 
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-7 h-7"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.8}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21.75 7.5v9a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 16.5v-9m19.5 0A2.25 2.25 0 0019.5 5.25h-15A2.25 2.25 0 002.25 7.5m19.5 0v.243a2.25 2.25 0 01-.97 1.858l-7.5 5a2.25 2.25 0 01-2.56 0l-7.5-5A2.25 2.25 0 012.25 7.743V7.5"
-                      />
-                    </svg>
+              {/* EMAIL */}
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
 
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center mb-5">
 
-                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
-                    Email
-                  </p>
-
-                  <a
-                    href="mailto:roughxvi@gmail.com"
-                    className="text-xl font-semibold hover:text-zinc-300 transition break-all"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-7 h-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
                   >
-                    roughxvi@gmail.com
-                  </a>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.75 7.5v9a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 16.5v-9m19.5 0A2.25 2.25 0 0019.5 5.25h-15A2.25 2.25 0 002.25 7.5m19.5 0v.243a2.25 2.25 0 01-.97 1.858l-7.5 5a2.25 2.25 0 01-2.56 0l-7.5-5A2.25 2.25 0 012.25 7.743V7.5"
+                    />
+                  </svg>
 
                 </div>
 
-                {/* DISCORD */}
-                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+                <p className="uppercase tracking-[0.3em] text-[10px] text-zinc-500 mb-3">
+                  Email
+                </p>
 
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+                <a
+                  href="mailto:roughxvi@gmail.com"
+                  className="text-lg font-bold hover:text-zinc-300 transition break-all"
+                >
+                  roughxvi@gmail.com
+                </a>
 
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-7 h-7"
-                      viewBox="0 0 127.14 96.36"
-                      fill="currentColor"
-                    >
-                      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2A75.57,75.57,0,0,0,95.73,78c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07Z" />
-                    </svg>
+              </div>
 
-                  </div>
+              {/* DISCORD */}
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
 
-                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
-                    Discord
-                  </p>
+                <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center mb-5">
 
-                  <p className="text-xl font-semibold">
-                    rough4574
-                  </p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-7 h-7"
+                    viewBox="0 0 127.14 96.36"
+                    fill="currentColor"
+                  >
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2A75.57,75.57,0,0,0,95.73,78c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07Z" />
+                  </svg>
+
+                </div>
+
+                <p className="uppercase tracking-[0.3em] text-[10px] text-zinc-500 mb-3">
+                  Discord
+                </p>
+
+                <p className="text-lg font-bold">
+                  rough4574
+                </p>
+
+              </div>
+
+              {/* ROBLOX */}
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6">
+
+                <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center mb-5">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-7 h-7"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M5 3L3 19L19 21L21 5L5 3ZM10.5 9.5L14.5 10.5L13.5 14.5L9.5 13.5L10.5 9.5Z" />
+                  </svg>
 
                 </div>
 
-                {/* ROBLOX */}
-                <div className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 backdrop-blur-xl">
+                <p className="uppercase tracking-[0.3em] text-[10px] text-zinc-500 mb-3">
+                  Roblox
+                </p>
 
-                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition">
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-7 h-7"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M5 3L3 19L19 21L21 5L5 3ZM10.5 9.5L14.5 10.5L13.5 14.5L9.5 13.5L10.5 9.5Z" />
-                    </svg>
-
-                  </div>
-
-                  <p className="text-zinc-400 text-sm mb-2 uppercase tracking-[0.2em]">
-                    Roblox
-                  </p>
-
-                  <p className="text-xl font-semibold">
-                    XVI_RoughJ
-                  </p>
-
-                </div>
+                <p className="text-lg font-bold">
+                  XVI_RoughJ
+                </p>
 
               </div>
 
             </div>
 
           </div>
+
         </section>
 
-      </section>
+        {/* MODAL */}
+        <AnimatePresence>
 
-      {/* PROJECT MODAL */}
-      <AnimatePresence>
-
-        {selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-6"
-          >
-
+          {selected && (
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-zinc-950/95 w-full max-w-6xl p-8 rounded-3xl border border-white/10 max-h-[90vh] overflow-y-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.12 }}
+              className="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
             >
 
-              <div className="flex items-center justify-between mb-10">
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.98,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.98,
+                }}
+                transition={{ duration: 0.12 }}
+                className="w-full max-w-6xl max-h-[92vh] overflow-y-auto rounded-[2rem] border border-white/10 bg-zinc-950/95 p-6"
+              >
 
-                <div>
-                  <h2 className="text-4xl font-black mb-2">
-                    {selected.title}
-                  </h2>
+                <div className="flex items-center justify-between mb-8">
 
-                  <p className="text-zinc-400">
-                    {selected.longDesc}
-                  </p>
+                  <div>
+
+                    <h2 className="text-4xl font-black mb-3">
+                      {selected.title}
+                    </h2>
+
+                    <p className="text-zinc-400 max-w-2xl leading-7 text-sm">
+                      {selected.longDesc}
+                    </p>
+
+                  </div>
+
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.05] flex items-center justify-center hover:bg-white/[0.08] transition"
+                  >
+                    <X />
+                  </button>
+
                 </div>
 
-                <button
-                  onClick={() => setSelected(null)}
-                  className="p-3 rounded-xl bg-white/10 hover:bg-white/20 transition"
-                >
-                  <X />
-                </button>
+                <div className="grid md:grid-cols-2 gap-5">
 
-              </div>
+                  {selected.images.map((img: string, index: number) => (
+                    <div
+                      key={index}
+                      className="group relative overflow-hidden rounded-3xl border border-white/10 cursor-pointer"
+                      onClick={() => setActiveImage(index)}
+                    >
 
-              {/* IMAGES */}
-              <div className="grid md:grid-cols-2 gap-5">
+                      <Image
+                        src={img}
+                        alt={`Project ${index}`}
+                        width={1200}
+                        height={800}
+                        loading="lazy"
+                        className="w-full h-[260px] object-cover group-hover:scale-[1.02] transition duration-300"
+                      />
 
-                {selected.images.map((img: string, index: number) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    className="relative overflow-hidden rounded-2xl border border-white/10 cursor-pointer group"
-                    onClick={() => setActiveImage(index)}
-                  >
-
-                    <img
-                      src={img}
-                      alt={`Project ${index}`}
-                      width={1200}
-                      height={800}
-                      className="h-72 w-full object-cover"
-                    />
-
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center">
-                      <span className="opacity-0 group-hover:opacity-100 transition text-white font-semibold text-lg">
-                        View Image
-                      </span>
                     </div>
+                  ))}
 
-                  </motion.div>
-                ))}
+                </div>
 
-              </div>
+              </motion.div>
 
             </motion.div>
-          </motion.div>
-        )}
+          )}
 
-      </AnimatePresence>
+        </AnimatePresence>
 
-      {/* FULLSCREEN IMAGE VIEWER */}
-      <AnimatePresence>
+        {/* FULLSCREEN */}
+        <AnimatePresence>
 
-        {activeImage !== null && selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center"
-          >
-
-            {/* CLOSE */}
-            <button
-              onClick={() => setActiveImage(null)}
-              className="absolute top-6 right-6 z-50 p-4 rounded-2xl bg-white/10 hover:bg-white/20 transition"
+          {activeImage !== null && selected && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
+              className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center"
             >
-              <X size={28} />
-            </button>
 
-            {/* LEFT */}
-            <button
-              onClick={prevImage}
-              className="absolute left-6 z-50 p-4 rounded-2xl bg-white/10 hover:bg-white/20 transition"
-            >
-              <ChevronLeft size={30} />
-            </button>
+              <button
+                onClick={() => setActiveImage(null)}
+                className="absolute top-6 right-6 z-50 w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.05] flex items-center justify-center"
+              >
+                <X size={24} />
+              </button>
 
-            {/* RIGHT */}
-            <button
-              onClick={nextImage}
-              className="absolute right-6 z-50 p-4 rounded-2xl bg-white/10 hover:bg-white/20 transition"
-            >
-              <ChevronRight size={30} />
-            </button>
+              <button
+                onClick={prevImage}
+                className="absolute left-6 z-50 w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.05] flex items-center justify-center"
+              >
+                <ChevronLeft size={24} />
+              </button>
 
-            {/* IMAGE */}
-            <motion.img
-              key={selected.images[activeImage]}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              src={selected.images[activeImage]}
-              alt="Fullscreen"
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-2xl"
-            />
+              <button
+                onClick={nextImage}
+                className="absolute right-6 z-50 w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.05] flex items-center justify-center"
+              >
+                <ChevronRight size={24} />
+              </button>
 
-          </motion.div>
-        )}
+              <Image
+                src={selected.images[activeImage]}
+                alt="Fullscreen"
+                width={1800}
+                height={1200}
+                priority
+                className="max-w-[92vw] max-h-[92vh] object-contain rounded-3xl"
+              />
 
-      </AnimatePresence>
+            </motion.div>
+          )}
+
+        </AnimatePresence>
+
+      </main>
     </>
   );
 }
