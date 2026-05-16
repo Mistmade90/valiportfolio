@@ -417,7 +417,7 @@ export default function Portfolio() {
                     label: "Projects",
                   },
                   {
-                    value: "1+",
+                    value: "2+",
                     label: "Years",
                   },
                   {
