@@ -65,12 +65,12 @@ export default function Portfolio() {
   const projects = [
     {
       title: "Vali's Blender Collection",
-      desc: "High quality cinematic renders and sci-fi creations.",
+      desc: "High quality cinematic renders and Star Warscreations.",
       longDesc:
-        "A complete collection of cinematic Blender creations, immersive sci-fi environments, detailed weapons and Star Wars inspired artwork.",
+        "A complete collection of cinematic Blender creations, immersive Star Wars environments, detailed weapons and Star Wars inspired artwork.",
       tags: [
         "Blender",
-        "Sci-Fi",
+        "Star Wars",
         "Weapons",
         "Roblox",
       ],
@@ -547,7 +547,7 @@ export default function Portfolio() {
 
             <p className="text-zinc-400 text-base leading-8 max-w-3xl mb-10">
               Feel free to contact me for commissions,
-              collaborations, sci-fi assets, environments,
+              collaborations, Star Wars assets, environments,
               weapon modeling or Roblox projects.
             </p>
 
