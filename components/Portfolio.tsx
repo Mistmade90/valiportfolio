@@ -88,6 +88,10 @@ export default function Portfolio() {
         "/images/Vali11.png",
         "/images/Vali12.png",
         "/images/Vali13.png",
+        "/images/Vali14.png",
+        "/images/Vali15.png",
+        "/images/Vali16.png",
+        "/images/Vali17.png",
       ],
     },
   ];
