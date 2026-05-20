@@ -282,13 +282,10 @@ export default function Portfolio() {
 
                 <div className="relative w-[260px] h-[260px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border border-white/10">
 
-                  <Image
-                    src="https://cdn.discordapp.com/avatars/519825388961005568/0bdc2bbf5705dc4ccd722f9b8fed2bd2.png?size=1024"
+                  <img
+                    src="/images/profile.gif"
                     alt="Valithar"
-                    fill
-                    priority
-                    unoptimized
-                    className="object-cover scale-110"
+                    className="w-full h-full object-cover scale-110"
                   />
 
                 </div>
